@@ -1,0 +1,8 @@
+---
+- name: Maven-Tomcat bundle deployment
+  hosts: mav
+  become: yes
+  roles:
+    - common
+    - maven
+    - 
