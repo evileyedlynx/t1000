@@ -1,8 +1,26 @@
 ---
-- name: Maven-Tomcat bundle deployment
+- name: Maven deployment
   hosts: mav
   become: yes
   roles:
     - common
     - maven
-    - 
+
+- name: Tomcat deployment
+  hosts: tom
+  become: yes
+  roles:
+    - common
+    - tomcat
+
+- name: artefact build
+  hosts: mav
+  become: yes
+  roles:
+    - artefact
+
+- name: artefact delivery
+  hosts: tom
+  become: yes
+  roles:
+    - delivery

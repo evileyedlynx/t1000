@@ -1,0 +1,39 @@
+---
+#- name: artefact build and copy
+#  tasks:
+- name: git clone
+  git:
+    repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+    dest: /home/ubuntu/repo/
+
+- name: maven start
+  command: mvn package
+  args:
+    chdir: /home/ubuntu/repo/
+
+#  - name: copy artefact to tomcat host
+#    synchronize:
+#      src: /home/ubuntu/repo/target/
+#      dest: /var/lib/tomcat8/webapps/
+#    mode: pull
+#    dirs: yes
+#    delegate_to: mav
+#    notify: 
+#      - restart_tomcat
+#    - name: Find files to copy
+#      find: paths="/home/user/repo/target" recurse=no patterns="*.war"
+#      register: files_to_copy
+#    - name: fetch files
+#      fetch: src={{ item.path }} dest=/home/ubuntu/
+#      with_items: "{{ files_to_copy.files }}"
+#    - name: Copy files
+#      copy: src="{{ item }}" dest=/var/lib/tomcat8/webapps/
+#      with_fileglob:
+#        - "/home/ubuntu/*.war"
+    
+#handlers:
+#  - restart_tomcat
+#  service: name=tomcat
+#  state: restarted
+#  delegate_to: tom
+        
