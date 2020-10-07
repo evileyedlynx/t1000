@@ -1,6 +1,7 @@
 ---
 - name: Maven installation 
 #  become: yes
-  apt: name=maven
-  state: present
-  update_cache: yes
+    apt: 
+      name: maven
+      state: present
+      update_cache: yes
