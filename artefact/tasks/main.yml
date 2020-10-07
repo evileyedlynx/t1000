@@ -2,14 +2,14 @@
 #- name: artefact build and copy
 #  tasks:
 - name: git clone
-    git:
-      repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
-      dest: /home/ubuntu/repo/
+  git:
+    repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+    dest: /home/ubuntu/repo/
 
 - name: maven start
-    command: mvn package
-    args:
-      chdir: /home/ubuntu/repo/
+  command: mvn package
+  args:
+    chdir: /home/ubuntu/repo/
 
 #  - name: copy artefact to tomcat host
 #    synchronize:
