@@ -1,6 +1,6 @@
 ---
 - name: common packages install
-    apt: 
+    apt:
       name: default-jdk
 #  apt: name={{ packages_list }}
 #  vars:

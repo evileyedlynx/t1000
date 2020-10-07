@@ -1,6 +1,6 @@
 ---
 - name: Tomcat install
-    apt: 
+    apt:
       name: tomcat8
       state: present
       update_cache: yes
