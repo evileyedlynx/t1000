@@ -12,4 +12,6 @@
     
 - handlers:
   - restart_tomcat
-    service: name=tomcat8 state=restarted
+    service: 
+      name: tomcat8 
+      state: restarted
