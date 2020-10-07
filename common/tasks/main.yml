@@ -1,8 +1,8 @@
 ---
 - name: common packages install
   apt: name={{ packages_list }}
-    vars:
-      packages_list:
-        - default-jdk
+  vars:
+    packages_list:
+      - default-jdk
   state: present
   update_cache: yes
