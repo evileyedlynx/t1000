@@ -10,7 +10,7 @@
   with_fileglob:
     - "/home/ubuntu/*.war"
     
-handlers:
+- handlers:
   - restart_tomcat
     service: name=tomcat8
     state: restarted
