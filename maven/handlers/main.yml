@@ -1,4 +1,4 @@
 ---
 handlers:
   - sshd_restart
-    service: name=sshd state=restarted
+  service: name=sshd state=restarted
