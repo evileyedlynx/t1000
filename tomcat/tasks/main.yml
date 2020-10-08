@@ -23,7 +23,7 @@
 
 - name: Check that the somefile.conf exists
   stat:
-    path: "{{ running_artefacts.files }}"
+    path: {{ running_artefacts.files }}
   register: stat_result
 
 - name: template banner
