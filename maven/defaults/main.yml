@@ -1,0 +1,5 @@
+---
+common_packages:
+  - default-jdk
+  - git
+  - maven

@@ -1,6 +1,0 @@
----
-- name: common packages install
-  apt:
-    name: default-jdk
-    state: present
-    update_cache: yes

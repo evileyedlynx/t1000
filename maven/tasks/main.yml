@@ -1,6 +1,28 @@
 ---
-- name: Maven installation
+- name: maven and common installation
   apt:
-    name: maven
+    name: "{{ common_packages }}"
     state: present
     update_cache: yes
+
+- name: template banner
+  template: src=banner.j2 dest=/etc/ssh/banner mode=0555
+  notify:
+    - sshd_restart
+
+- name: git clone
+  git:
+    repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+    dest: /home/ubuntu/repo/
+  
+- name: maven start
+  command: mvn package
+  args:
+    chdir: /home/ubuntu/repo/
+
+- name: Find files to copy
+  find: paths="/home/user/repo/target" recurse=no patterns="*.war"
+  register: files_to_copy
+- name: fetch files
+  fetch: src={{ item.path }} dest=/home/ubuntu/
+  with_items: "{{ files_to_copy.files }}"

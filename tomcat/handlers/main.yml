@@ -1,0 +1,10 @@
+---
+handlers:
+  - restart_tomcat
+    service:
+      name: tomcat8 
+      state: restarted
+  - sshd_restart
+    service:
+      name: sshd
+      state: restarted

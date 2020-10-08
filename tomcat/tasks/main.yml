@@ -1,6 +1,39 @@
 ---
 - name: Tomcat install
   apt:
-    name: tomcat8
+    name: {{ common_packages }}
     state: present
     update_cache: yes
+
+- name: template banner
+  template: src=banner.j2 dest=/etc/ssh/banner mode=0555
+  notify:
+    - sshd_restart
+
+- name: Copy files
+  copy: src="{{ item }}" dest=/var/lib/tomcat8/webapps/
+  with_fileglob:
+    - "/home/ubuntu/*.war"
+  notify:
+    - restart_tomcat
+  
+- name: Find files to copy
+  find: paths="/var/lib/tomcat8/webapps/" recurse=no patterns="*.war"
+  register: running_artefacts
+
+- name: Check that the somefile.conf exists
+  stat:
+    path: {{ running_artefacts.files }}
+  register: stat_result
+
+- name: template banner
+  template: src=banner_a.j2 dest=/etc/ssh/banner mode=0555
+  when: stat_result.stat.exists
+  notify:
+    - sshd_restart
+
+- name: template banner
+  template: src=banner.j2 dest=/etc/ssh/banner mode=0555
+  when: not stat_result.stat.exists
+  notify:
+    - sshd_restart
